@@ -1,4 +1,4 @@
-export default interface Author {
+export default interface Team {
     id: number,
     name: string
 }
