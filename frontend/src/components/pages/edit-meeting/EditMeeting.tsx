@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMeetings } from '../../meetings-context/MeetingsContext';
@@ -9,13 +9,18 @@ import './EditMeeting.css';
 export default function EditMeeting() {
     const { teams } = useMeetings();
     const { id } = useParams(); 
-    const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm<MeetingDraft>();
     const navigate = useNavigate();
+    const meetingId = Number(id);
 
-    const originalValues = useRef<MeetingDraft | null>(null);
+    const { 
+        register, 
+        handleSubmit, 
+        watch, 
+        reset, 
+        formState: { errors, isDirty } 
+    } = useForm<MeetingDraft>();
 
     const startTimeValue = watch('startTime');
-    const meetingId = Number(id);
 
     useEffect(() => {
         if (!meetingId) return;
@@ -32,32 +37,18 @@ export default function EditMeeting() {
                     room: meeting.room,
                 };
 
-                originalValues.current = draft;
-
-                setValue('teamId', draft.teamId);
-                setValue('startTime', draft.startTime);
-                setValue('endTime', draft.endTime);
-                setValue('description', draft.description);
-                setValue('room', draft.room);
+                reset(draft); 
 
             } catch (e) {
                 alert(e);
             }
         })();
-    }, [meetingId, setValue]);    
+    }, [meetingId, reset]);    
 
     async function submit(draft: MeetingDraft) {
         if (!meetingId) return;
 
-        const orig = originalValues.current;
-        if (
-            orig &&
-            draft.teamId === orig.teamId &&
-            draft.startTime === orig.startTime &&
-            draft.endTime === orig.endTime &&
-            draft.description === orig.description &&
-            draft.room === orig.room
-        ) {
+        if (!isDirty) {
             alert("You didn't change anything.");
             return;
         }
@@ -77,6 +68,8 @@ export default function EditMeeting() {
         }
     }
 
+    // ... your JSX remains exactly the same ...
+    
     return (
         <div className="EditMeeting">
             <h2>Edit Meeting</h2>
