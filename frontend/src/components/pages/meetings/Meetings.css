@@ -1,0 +1,24 @@
+.Meetings {
+    padding: 30px;
+}
+
+.team-selector {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.team-selector select {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

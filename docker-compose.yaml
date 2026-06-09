@@ -1,0 +1,35 @@
+services:
+  database:
+    container_name: meetings-db 
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_DATABASE=meetings_db
+      - MYSQL_TCP_PORT=3306
+    expose:
+      - 3306
+    build: ./database
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+      
+  backend:
+    container_name: meetings-backend
+    ports:
+      - 3010:3000
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.compose
+    depends_on:
+      database:
+        condition: service_healthy
+  
+  frontend:
+    container_name: meetings-front
+    ports:
+      - 6124:80
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.compose

@@ -1,0 +1,72 @@
+.MeetingCard {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    background-color: var(--bg);
+    box-shadow: var(--shadow);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.MeetingCard.future-meeting {
+    background-color: #ffe8cc;
+    border-color: #ffa94d;
+}
+
+.MeetingCard.past-meeting {
+    background-color: #d3f9d8;
+    border-color: #8ce99a;
+}
+
+.MeetingCard h3 {
+    margin-top: 0;
+    color: #004b87;
+    font-size: 18px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+.meeting-details {
+    flex-grow: 1;
+}
+
+.meeting-details p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.edit-btn {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.edit-btn:hover {
+    background-color: #138496;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}

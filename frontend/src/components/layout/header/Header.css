@@ -1,0 +1,43 @@
+.Header {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.Header .logo {
+    max-width: 200px;
+    height: auto;
+}
+
+.Header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #004b87;
+}
+
+.Header .menu {
+    display: flex;
+    gap: 20px;
+}
+
+.Header .menu a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.Header .menu a.active {
+    background-color: #004b87;
+    color: white;
+}
+
+.Header .menu a:hover:not(.active) {
+    background-color: #e2e6ea;
+}
